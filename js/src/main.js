@@ -23,7 +23,7 @@ require.config({
     }
 });
 
-define(["jquery", "service/message/index", "ui/input/index"], function($, MessageService, InputView) {
+define(["jquery", "service/message/index", "ui/input/index", "ui/output/index"], function($, MessageService, InputView, OutputView) {
     var body;
 
     app.modules = {
@@ -37,6 +37,7 @@ define(["jquery", "service/message/index", "ui/input/index"], function($, Messag
     });
 
     // Initialize UI modules
+    app.modules.ui.output = new OutputView();
     app.modules.ui.input = new InputView();
 
     // Cache body

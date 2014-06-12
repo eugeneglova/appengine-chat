@@ -1,6 +1,5 @@
-define(["backbone", "hbs!./templates/index"], function (Backbone, template) {
+define(["backbone", "hbs!./templates/index"], function(Backbone, template) {
 
-    // Use view as a simple module wrapper
     return Backbone.View.extend({
 
         template: template,

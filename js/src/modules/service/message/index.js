@@ -1,4 +1,4 @@
-define(["backbone"], function (Backbone) {
+define(["backbone"], function(Backbone) {
 
     // Use view as a simple module wrapper
     return Backbone.View.extend({
