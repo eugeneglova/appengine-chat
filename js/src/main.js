@@ -23,7 +23,7 @@ require.config({
     }
 });
 
-define(["service/message/index", "ui/input/index"], function (MessageService, InputView) {
+define(["jquery", "service/message/index", "ui/input/index"], function($, MessageService, InputView) {
     var body;
 
     app.modules = {
