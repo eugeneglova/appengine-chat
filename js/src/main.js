@@ -2,7 +2,9 @@ require.config({
     paths: {
         jquery: "../libs/jquery/jquery-1.11.1.min",
         underscore: "../libs/underscore/underscore-min",
-        backbone: "../libs/backbone/backbone-min"
+        backbone: "../libs/backbone/backbone-min",
+        service: "modules/service",
+        ui: "modules/ui"
     },
     shim: {
         "backbone": {
@@ -15,28 +17,16 @@ require.config({
     }
 });
 
-define(["backbone"], function (Backbone) {
-    var app = window.app;
+define(["service/message/index"], function (MessageService) {
 
-    app.channel = new goog.appengine.Channel(app.token);
-
-    app.socket = app.channel.open();
-
-    app.socket.onopen = function() {
-        console.info("Channel API Connection is open.");
+    app.modules = {
+        service: {},
+        ui: {}
     };
 
-    app.socket.onmessage = function(msg) {
-       console.info("Message Received: ", msg, ", Data: " + msg.data);
-    };
-
-    app.socket.onerror = function(e) {
-        console.info("CHANNEL Error. Code: " + e.code + ", Description: " + e.description);
-    };
-
-    app.socket.onclose = function() {
-        console.info("Close Channel");
-    };
+    app.modules.service.message = new MessageService({
+        token: window.app.token
+    });
 
     return true;
 });
