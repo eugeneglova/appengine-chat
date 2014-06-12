@@ -30,6 +30,8 @@ class ChannelReceiveHandler(webapp2.RequestHandler):
 
     channel.send_message("shared_channel", msg)
 
+    self.response.out.write(msg)
+
 class MainHandler(webapp2.RequestHandler):
   """This page is responsible for showing the game UI. It may also
   create a new game or add the currently-logged in user to a game."""
@@ -58,5 +60,5 @@ jinja_environment = jinja2.Environment(
 
 app = webapp2.WSGIApplication([
     ("/", MainHandler),
-    ("/_ah/channel/receive", ChannelReceiveHandler)
+    ("/message", ChannelReceiveHandler)
 ], debug=True)

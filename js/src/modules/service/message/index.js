@@ -113,10 +113,12 @@ define(["backbone"], function(Backbone) {
          */
         onSend: function(msg) {
             // Send a message
-            this.socket.send(JSON.stringify({
-                nickname: this.nickname,
-                message: msg
-            }));
+            $.post("/message", {
+                msg: JSON.stringify({
+                    nickname: this.nickname,
+                    message: msg
+                })
+            });
 
             console.info("Message Sent:", msg);
 
