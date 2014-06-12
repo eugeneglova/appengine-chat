@@ -1,0 +1,32 @@
+<html>
+<head>
+    <script type="text/javascript" src="/_ah/channel/jsapi"></script>
+</head>    
+<body>
+    <script>
+        onOpened = function() {
+            console.info("Channel API Connection is open.");
+        };
+
+        onError = function(e) {
+            console.info("CHANNEL Error. Code: " + e.code + ", Description: " + e.description);
+        };
+
+        onClose = function() {
+            console.info("Close Channel");
+        };
+
+        onMessage = function(msg) {
+           console.info("Message Received: " + msg + ", Data: " + msg.data);
+        };
+
+        channel = new goog.appengine.Channel("{{ token }}");
+        socket = channel.open();
+        socket.onopen = onOpened;
+        socket.onmessage = onMessage;
+        socket.onerror = onError;
+        socket.onclose = onClose;
+    </script>
+    {{ nickname }}
+</body>
+</html>
