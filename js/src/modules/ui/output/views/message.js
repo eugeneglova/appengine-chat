@@ -6,8 +6,20 @@ define(["backbone", "hbs!../templates/message"], function(Backbone, template) {
 
         className: "message",
 
-        // Will be overrided during extension this view
-        message: "Example message text",
+        // Holds a message
+        message: null,
+
+
+        /**
+         * initialize
+         *
+         * @return {Object}
+         */
+        initialize: function(options) {
+            this.message = options.message;
+
+            return this;
+        },
 
 
         /**

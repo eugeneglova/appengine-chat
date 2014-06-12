@@ -37,9 +37,9 @@ define(["underscore", "backbone", "./views/message"], function(_, Backbone, Mess
             if ( ! msg) return false;
 
             // Initialize message view
-            message_view = new (MessageView.extend({
+            message_view = new MessageView({
                 message: msg
-            }))();
+            });
 
             // Append view to the output
             this.$el.append(message_view.$el);
