@@ -43,5 +43,4 @@ define(["backbone", "hbs!../templates/message"], function(Backbone, template) {
 
     });
 
-    return true;
 });

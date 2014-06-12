@@ -69,5 +69,4 @@ define(["underscore", "backbone", "./views/message"], function(_, Backbone, Mess
 
     });
 
-    return true;
 });

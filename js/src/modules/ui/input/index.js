@@ -89,5 +89,4 @@ define(["backbone", "hbs!./templates/index"], function(Backbone, template) {
 
     });
 
-    return true;
 });

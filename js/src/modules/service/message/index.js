@@ -127,5 +127,4 @@ define(["backbone"], function(Backbone) {
 
     });
 
-    return true;
 });
