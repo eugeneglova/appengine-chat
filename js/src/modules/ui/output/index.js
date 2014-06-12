@@ -34,12 +34,10 @@ define(["underscore", "backbone", "./views/message"], function(_, Backbone, Mess
         onMessageReceived: function(msg) {
             var message_view;
 
-            if ( ! msg) return false;
+            if ( ! msg || ! msg.message || ! msg.nickname) return false;
 
             // Initialize message view
-            message_view = new MessageView({
-                message: msg
-            });
+            message_view = new MessageView(msg);
 
             // Append view to the output
             this.$el.append(message_view.$el);

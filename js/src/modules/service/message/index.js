@@ -9,6 +9,9 @@ define(["backbone"], function(Backbone) {
         // Holds channel socket
         socket: null,
 
+        // Holds nickname
+        nickname: null,
+
 
         /**
          * initialize
@@ -16,6 +19,9 @@ define(["backbone"], function(Backbone) {
          * @return {Object}
          */
         initialize: function(options) {
+            // Save nickname
+            this.nickname = options.nickname;
+
             // Init channel with user token
             this.channel = new goog.appengine.Channel(options.token);
 
@@ -58,10 +64,12 @@ define(["backbone"], function(Backbone) {
          * @return {Boolean}
          */
         onMessage: function(msg) {
-            // Use Backbone as global bus to exchange messages with other modules
-            Backbone.trigger("service:message:received", msg.data);
+            var data = JSON.parse(msg.data);
 
-            console.info("Message Received: ", msg, ", Data:", msg.data);
+            // Use Backbone as global bus to exchange messages with other modules
+            Backbone.trigger("service:message:received", data);
+
+            console.info("Message Received:", data);
 
             return true;
         },
@@ -100,11 +108,15 @@ define(["backbone"], function(Backbone) {
          *
          * When other module sends us a message
          *
+         * @param {String} msg
          * @return {Boolean}
          */
         onSend: function(msg) {
             // Send a message
-            this.socket.send(msg);
+            this.socket.send(JSON.stringify({
+                nickname: this.nickname,
+                message: msg
+            }));
 
             console.info("Message Sent:", msg);
 

@@ -33,7 +33,8 @@ define(["jquery", "service/message/index", "ui/input/index", "ui/output/index"],
 
     // Initialize service modules
     app.modules.service.message = new MessageService({
-        token: window.app.token
+        token: window.app.token,
+        nickname: window.app.nickname
     });
 
     // Initialize UI modules

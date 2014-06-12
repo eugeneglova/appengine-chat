@@ -9,6 +9,9 @@ define(["backbone", "hbs!../templates/message"], function(Backbone, template) {
         // Holds a message
         message: null,
 
+        // Holds a nickname
+        nickname: null,
+
 
         /**
          * initialize
@@ -17,6 +20,7 @@ define(["backbone", "hbs!../templates/message"], function(Backbone, template) {
          */
         initialize: function(options) {
             this.message = options.message;
+            this.nickname = options.nickname;
 
             return this;
         },
@@ -30,7 +34,8 @@ define(["backbone", "hbs!../templates/message"], function(Backbone, template) {
         render: function() {
             // Render template with message
             this.$el.append(this.template({
-                message: this.message
+                message: this.message,
+                nickname: this.nickname
             }));
 
             return true;
